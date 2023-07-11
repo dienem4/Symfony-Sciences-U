@@ -3,13 +3,13 @@ version: '3'
 services:
 ###> doctrine/doctrine-bundle ###
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: mariadb:latest
     environment:
-      POSTGRES_DB: plantes
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
+      MARIADB_DATABASE: plantes
+      MARIADB_ROOT_PASSWORD:
+      MARIADB_USER: root
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
+      - db-data:/var/lib/mariadb/data:rw
       # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
       # - ./docker/db/data:/var/lib/postgresql/data:rw
 ###< doctrine/doctrine-bundle ###
