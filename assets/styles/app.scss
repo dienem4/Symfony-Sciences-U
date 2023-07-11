@@ -1,0 +1,34 @@
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: lightgray;
+}
+
+.panier-modal {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    z-index: 10;
+
+    &.open {
+        display: block;
+    }
+
+    article {
+        padding: 10px 0;
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            font-size: small;
+        }
+    }
+}

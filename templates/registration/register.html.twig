@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{# STYLES #}
+{% block styles %}
+	{{ encore_entry_link_tags('register') }}
+{% endblock %}
+
+{# SCRIPTS #}
+{% block scripts %}
+	{{ encore_entry_script_tags('register') }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{{ form_start(registrationForm) }}
+		<div class="row">
+			<div class="col-6">
+				{{ form_label(registrationForm.firstname, '', {'label_attr': {'class': 'form-label'}}) }}
+				<div class="input-group mb-3">
+					{{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="error">{{ form_errors(registrationForm.firstname) }}</div>
+			</div>
+			<div class="col-6">
+				{{ form_label(registrationForm.lastname, '', {'label_attr': {'class': 'form-label'}}) }}
+				<div class="input-group mb-3">	
+					{{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="error">{{ form_errors(registrationForm.lastname) }}</div>
+			</div>
+			<div class="col-6">
+				{{ form_label(registrationForm.email, '', {'label_attr': {'class': 'form-label'}}) }}
+				<div class="input-group mb-3">
+					{{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="error">{{ form_errors(registrationForm.email) }}</div>
+			</div>
+
+			<div class="col-12">
+				{{ form_label(registrationForm.password, '', {'label_attr': {'class': 'form-label'}}) }}
+				<div class="input-group mb-3">
+					{{ form_widget(registrationForm.password.first, {'attr': {'class': 'form-control'}}) }}
+					{{ form_widget(registrationForm.password.second, {'attr': {'class': 'form-control ms-4'}}) }}
+				</div>
+				<div class="error">{{ form_errors(registrationForm.password) }}</div>
+			</div>
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary mt-3">Enregistrez moi !</button>
+			</div>
+		</div>
+		{{ form_end(registrationForm) }}
+	</div>
+{% endblock %}

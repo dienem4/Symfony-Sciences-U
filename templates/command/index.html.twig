@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Mes commandes
+{% endblock %}
+
+{% block body %}
+  <h1>
+    Mes commandes
+  </h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Id
+        </th>
+        <th>
+          Date
+        </th>
+        <th>
+          Price
+        </th>
+        <th>
+          Link
+        </th>
+        <th>
+          Products
+        </th>
+        <th>
+          actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for command in commands %}
+        <tr>
+          <td>
+            {{ command.id }}
+          </td>
+          <td>
+            {{ command.date ? command.date|date('Y-m-d') : '' }}
+          </td>
+          <td>
+            {{ command.price }}
+          </td>
+          <td>
+            {{ command.link }}
+          </td>
+          <td>
+            {% for product in command.products %}
+              {% for key, quantity in command.quantityArr %}
+                {% if product.id == key %}
+                  {{ product }} x {{ quantity }}
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
+          </td>
+          <td>
+            <a href="{{
+              path(
+                'app_command_show',
+                {
+                  id: command.id
+                }
+              )
+              }}">
+              Voir la commande
+            </a>
+            {% if 'ROLE_ADMIN' in app.user.roles %}
+              <a href="{{
+                path(
+                  'app_command_edit',
+                  {
+                    id: command.id
+                  }
+                )
+                }}">
+                Modifier la commande
+              </a>
+            {% endif %}
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="5">
+            Aucune données
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if 'ROLE_ADMIN' in app.user.roles %}
+    <a href="{{ path('app_command_new') }}">Nouvelle commande</a>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <h1>Passer la commande</h1>
+
+    <div class="list-group" id="panier">
+
+        {{ form_start(form) }}
+            {% for product in form.products %}
+                <div class="d-flex w-100 justify-content-between article">
+                    <div class="content">
+                        <h5>{{ product.vars.value.label }} <small>x {{product.vars.value.quantity}}</small></h5>
+                        <p>{{ product.vars.value.description }}</p>
+                        <a href="{{ path("removePanier", {"product" : product.vars.value.id}) }}" class="remove small">Retirer</a>
+                    </div>
+                    <div class="content">
+                        <h5>Quantité : </h5>
+                        {{ form_row(product.quantity, {'attr': {'class': 'quantity_input'}}) }}
+                    </div>
+
+                    <div >
+                        <h5 class="price">{{product.vars.value.price}}€</h5>
+                    </div>
+                </div>
+            {% endfor %}
+            <hr>
+            <div>
+                <h5> Prix total : </h5>
+                <div id="total_panier"> 0€ </div>
+            </div>
+            <hr>
+
+            <div class="confirm d-flex">
+                <input type="checkbox" id="confirmation" class='me-1' required>
+                <p>Confirmez la commande</p>
+            </div>
+            <div class="col-12">
+				<button type="submit" class="btn btn-primary mt-3">Valider la commande</button>
+			</div>  
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

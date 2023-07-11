@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{# STYLES #}
+{% block styles %}
+	{{ encore_entry_link_tags('register') }}
+{% endblock %}
+
+{# SCRIPTS #}
+{% block scripts %}
+	{{ encore_entry_script_tags('register') }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Edit profile</h1>
+		{{ form_start(editProfileForm) }}
+		<div class="row">
+			<div class="col-6">
+				{{ form_label(editProfileForm.firstname, '', {'label_attr': {'class': 'form-label'}}) }}
+				<div class="input-group mb-3">
+					{{ form_widget(editProfileForm.firstname, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="error">{{ form_errors(editProfileForm.firstname) }}</div>
+			</div>
+			<div class="col-6">
+				{{ form_label(editProfileForm.lastname, '', {'label_attr': {'class': 'form-label'}}) }}
+				<div class="input-group mb-3">
+					{{ form_widget(editProfileForm.lastname, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="error">{{ form_errors(editProfileForm.lastname) }}</div>
+			</div>
+			<div class="col-6">
+				{{ form_label(editProfileForm.email, '', {'label_attr': {'class': 'form-label'}}) }}
+				<div class="input-group mb-3">
+					{{ form_widget(editProfileForm.email, {'attr': {'class': 'form-control'}}) }}
+				</div>
+				<div class="error">{{ form_errors(editProfileForm.email) }}</div>
+			</div>
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary mt-3">Save</button>
+			</div>
+		</div>
+		{{ form_end(editProfileForm) }}
+	</div>
+{% endblock %}
