@@ -3,32 +3,37 @@
 {% block title %}Produits{% endblock %}
 
 {% block body %}
-    <h1>Produits</h1>
+    <h1 class="text-center">Produits</h1>
+    
+<table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" class="w-30">Id</th>
+        <th scope="col" class="w-30">Label</th>
+        <th scope="col" class="w-30">Descriptionte</th>
+        <th scope="col" class="w-30">Price</th>
+        <th scope="col" class="w-30">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{product.label }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+            
+               <a class="btn btn-warning" href="{{ path('app_product_edit', {'id': product.id}) }}">Modifier</a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Label</th>
-                <td>{{ product.label }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price }}</td>
-            </tr>
-        </tbody>
-    </table>
+               {{ include('product/_delete_form.html.twig') }}
+                
+            
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-    <a href="{{ path('app_product_index') }}">Retour a la liste</a>
+    <a class="btn btn-secondary" href="{{ path('app_product_index') }}">Retour a la liste</a>
 
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">Modifier</a>
-
-    {{ include('product/_delete_form.html.twig') }}
+   
 {% endblock %}

@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit Command</h1>
 
-    {{ include('command/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('command/_form.html.twig', {'button_label': 'Update'}) }} <br/><br/>
 
-    <a href="{{ path('app_command_index') }}">back to list</a>
+    <a class="btn btn-secondary" href="{{ path('app_command_index') }}">back to list</a><br/><br/>
 
     {{ include('command/_delete_form.html.twig') }}
 {% endblock %}

@@ -12,6 +12,60 @@
     {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
     {% block stylesheets %}
       {{ encore_entry_link_tags('app') }}
+      <style>
+      /* Styles for the menu  #2980b9;#3498db  */
+      .navbar {
+        background-color: #f8f9fa;
+        padding: 10px;
+      }
+
+      .navbar-brand {
+        color: #333;
+        font-weight: bold;
+      }
+
+      .navbar-nav .nav-link {
+        color: #333;
+      }
+
+      .navbar-toggler-icon {
+        background-color: #333;
+      }
+
+      /* Additional styles */
+      body {
+        background-color: #f3f3f3;
+        color: #333;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Button styles */
+      .btn {
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .btn-outline-success {
+        border: 2px solid #28a745;
+        color: #28a745;
+      }
+
+     h1 {
+      color: #007bff; /* Blue color for the heading */
+    }
+
+      /* Badge styles */
+      .badge {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 12px;
+        font-weight: bold;
+        background-color: #dc3545;
+        color: #fff;
+        border-radius: 50%;
+      }
+    </style>
     {% endblock %}
 
     {% block javascripts %}
@@ -19,53 +73,57 @@
     {% endblock %}
   </head>
   <body>
-    <header>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand ms-2" href="{{ path("app_home") }}">Europlante</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand ms-2" href="{{ path("app_home") }}">Europlante</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
         {% if app.user %}
-              <li class="nav-item active">
-      </li>
+          <li class="nav-item active">
+          </li>
 
           {% if 'ROLE_ADMIN' in app.user.roles %}
-
-      {# <li class="nav-item active">
-        <a class="nav-link" href=""><span class="sr-only">Utilisateurs</span></a>
-      </li> #}
+            {# <li class="nav-item active">
+              <a class="nav-link" href=""><span class="sr-only">Utilisateurs</span></a>
+            </li> #}
           {% endif %}
 
-            <li class="nav-item active">
-        <a class="nav-link" href="{{ path('app_command_index') }}"><span class="sr-only">Commandes</span></a>
-      </li>
-            <li class="nav-item active">
-        <a class="nav-link" href="{{ path('app_product_index') }}"><span class="sr-only">Produits</span></a>
-      </li>
-
-        <a class="nav-link" href="{{ path('app_logout') }}"><span class="sr-only ms-5">Se deconnecter</span></a>
-
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ path('app_command_index') }}"><span class="sr-only">Liste des commandes</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ path('app_product_index') }}"><span class="sr-only">Liste des produits</span></a>
+          </li>
         {% endif %}
+      </ul>
 
-    </ul>
-  </div>
-  {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
-  {% if 'product' in currentPath %}
-    <button class="btn btn-outline-success float-end me-2" id="open-panier">Voir le panier 
-    {% if panier is defined %}
-      {% if panier|length > 0 %}
-        <span class="badge bg-danger">{{panier|length}}</span>
+      {% if app.user %}
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_logout') }}"><span class="sr-only ms-5">Déconnexion</span></a>
+          </li>
+        </ul>
       {% endif %}
+    </div>
+
+    {% set currentPath = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+    {% if 'product' in currentPath %}
+      <button class="btn btn-outline-success float-end me-2" id="open-panier">Voir votre panier 
+        {% if panier is defined %}
+          {% if panier|length > 0 %}
+            <span class="badge bg-danger">{{panier|length}}</span>
+          {% endif %}
+        {% endif %}
+      </button>
     {% endif %}
-  </span>
-  </button>
-  {% endif %}
-</nav>
-    </header>
+  </nav>
+</header>
+
+
     <div class="container">
       {% block body %}
 

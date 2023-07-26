@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,9 +14,26 @@ class ProductType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('label')
-            ->add('description')
-            ->add('price');
+            ->add('label', TextType::class,[
+                'label' => 'Nom produit',
+                'attr' => [
+                    'placeholder' => 'Saisir'
+                ]
+            ])
+            ->add('description', TextType::class,[
+                'label' => 'Description',
+                'attr' => [
+                    'placeholder' => 'Saisir la description'
+                ]
+            ])
+            ->add('price', TextType::class,[
+                'label' => 'Le prix',
+                'attr' => [
+                    'placeholder' => 'Saisir le prix'
+                ]
+            ])
+        ;
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -5,12 +5,17 @@
 {% endblock %}
 
 {% block body %}
-  <h1>
-    Mes commandes
-  </h1>
+  <h1 class="text-center">
+   Liste des commandes
+  </h1><br/><br/>
+  <div class="text-center">
+  {% if 'ROLE_ADMIN' in app.user.roles %}
+    <a class="btn btn-success" href="{{ path('app_command_new') }}">Nouvelle commande</a><br/><br/>
+  {% endif %}
+  </div>
 
-  <table class="table">
-    <thead>
+   <table class="table">
+    <thead class="table-dark">
       <tr>
         <th>
           Id
@@ -57,7 +62,7 @@
             {% endfor %}
           </td>
           <td>
-            <a href="{{
+            <a class="btn btn-primary" href="{{
               path(
                 'app_command_show',
                 {
@@ -68,7 +73,7 @@
               Voir la commande
             </a>
             {% if 'ROLE_ADMIN' in app.user.roles %}
-              <a href="{{
+              <a class="btn btn-warning" href="{{
                 path(
                   'app_command_edit',
                   {
@@ -91,7 +96,4 @@
     </tbody>
   </table>
 
-  {% if 'ROLE_ADMIN' in app.user.roles %}
-    <a href="{{ path('app_command_new') }}">Nouvelle commande</a>
-  {% endif %}
 {% endblock %}

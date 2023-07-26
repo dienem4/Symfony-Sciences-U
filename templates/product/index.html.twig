@@ -11,7 +11,7 @@
                 <article id="panier-{{ product.id }}">
                     <h5>{{ product.label }} <small>x {{ product.quantity }}</small></h5>
                     <p>{{  product.price * product.quantity }}€</p>
-                    <a href="{{ path("removePanier", {"product" : product.id}) }}" class="remove small">Retirer</a>
+                    <a class='btn btn-danger' href="{{ path("removePanier", {"product" : product.id}) }}" class="remove small">Retirer</a>
                 </article>
             {% else %}
                 <p>Vous n'avez pas d'article dans votre panier</p>
@@ -21,10 +21,11 @@
             {% endif %}
         </div>
     </div>
-    <h1>Liste des produits</h1>
-
+    <h1 class="h3 mb-3 m-4 text-center font-weight-light">Liste des produits</h1><br/>
+   <div class="text-center">
+        <a class="btn btn-primary text-center px-5 mb-5 mx-auto" href="{{ path('app_product_new') }}" >Ajouter</a><br/>
+   </div>
     {% if 'ROLE_ADMIN' in app.user.roles %}
-        <a href="{{ path('app_product_new') }}" class='btn btn-primary'>Create new</a>
     {% endif %}
     <div class="row">
         {% for product in products %}
@@ -34,9 +35,9 @@
                     <div class="card-body">
                         <h4 class="card-title">{{ product.label }}</h4>
                         <p class="card-text">{{ product.description }}</p>
-                            <a href="{{ path("addPanier", {"product" : product.id}) }}" class="btn btn-primary">Ajouter au panier</a> 
+                            <a href="{{ path("addPanier", {"product" : product.id}) }}" class="btn btn-success">Ajouter au panier</a> 
                     </div>
-                </div>
+                </div><br/>
             </div>
         {% else %}
             <h5 colspan="5">no records found</h5>

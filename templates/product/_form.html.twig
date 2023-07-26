@@ -1,4 +1,54 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<style>
+/* styles.css */
+
+/* Style for the form container */
+.container {
+  margin-top: 30px;
+}
+
+/* Style for the form fields */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Style for the Save button */
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            {{ form_start(form, {'attr': {'class': 'my-form'}}) }}
+            <div class="form-group">
+                {{ form_row(form.label, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.price, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

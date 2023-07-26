@@ -3,32 +3,34 @@
 {% block title %}Commande{% endblock %}
 
 {% block body %}
-    <h1>Commande</h1>
+    <h1 class="text-center">Commande</h1><br/>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ command.id }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ command.date ? command.date|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ command.price }}</td>
-            </tr>
-            <tr>
-                <th>Link</th>
-                <td>{{ command.link }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_command_index') }}">Retour a la liste</a>
-
-    <a href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a>
-
-    {{ include('command/_delete_form.html.twig') }}
+<table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" class="w-30">Id</th>
+        <th scope="col" class="w-30">Date</th>
+        <th scope="col" class="w-30">Price</th>
+        <th scope="col" class="w-30">Link</th>
+        <th scope="col" class="w-30">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ command.id }}</td>
+            <td>{{ command.date ? command.date|date('Y-m-d') : '' }}</td>
+            <td>{{ command.price}}</td>
+            <td>{{  command.link }}</td>
+            <td>
+            
+              <a class="btn btn-warning" href="{{ path('app_command_edit', {'id': command.id}) }}">Modifier</a><br/>
+                  {{ include('command/_delete_form.html.twig') }}
+                
+            
+            </td>
+        </tr>
+    </tbody>
+</table>
+  
+    <a class="btn btn-secondary" href="{{ path('app_command_index') }}">Retour a la liste</a>
 {% endblock %}

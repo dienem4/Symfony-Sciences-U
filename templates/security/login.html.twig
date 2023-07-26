@@ -3,6 +3,50 @@
 {% block title %}Connecté!{% endblock %}
 
 {% block body %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+            {% if error %}
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+
+            {% if app.user %}
+                <div class="mb-3">
+                    Vous etes connecté : {{ app.user.email }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
+                </div>
+            {% else %}
+        
+            <h1 class="h3 mb-3 font-weight-normal">Connectez vous </h1>
+            <label for="inputEmail">Email</label>
+            <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+            <label for="inputPassword">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            ><br/><br/>
+            <button class="btn btn-lg btn-success" type="submit">
+                Se connecter
+            </button>
+
+            <a class="btn btn-lg btn-primary" href="/registration" style="float:right;">Créer mon compte !</a>
+            {% endif %}
+        </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Connecté!{% endblock %}
+
+{% block body %}
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -13,21 +57,27 @@
              Vous etes connecté : {{ app.user.email }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
         </div>
     {% else %}
-
+<div class="text-center">
     <h1 class="h3 mb-3 font-weight-normal">Connectez vous </h1>
     <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <div class="col-6 mx-auto">
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+	</div>
     <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+    <div class="col-6 mx-auto">
+        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+	</div>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
-    >
-    <button class="btn btn-lg btn-primary" type="submit">
+    ><br/><br/>
+    <button class="btn btn-lg btn-success" type="submit">
         Se connecter
     </button>
 
-    <a href="/registration" style="float:right;">Créer mon compte !</a>
+    <a class="btn btn-lg btn-primary" href="/registration" style="float:right;">Créer mon compte !</a>
+ </div>
+  
     {% endif %}
 </form>
-{% endblock %}
+{% endblock %} #}

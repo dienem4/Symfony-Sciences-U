@@ -1,53 +1,52 @@
 {% block body %}
-	<div class="container">
-		{{ form_start(form) }}
-		<div class="row">
-            <div class="col-12">
-                {{ form_label(form.link, '', {'label_attr': {'class': 'form-label'}}) }}
-				<div class="input-group mb-3 d-block">
-					{% if form.link.parent.vars.value.link %}
-						<img src="{{ asset(form.link.parent.vars.value.link) }}" class="img-fluid d-block m-auto mb-2" alt="" style="max-width: 100px">
-						{{ form_widget(form.link, {'required': false, "attr": {'class': 'w-100 form-control'}}) }}
-					{% else %}
-
-						{{ form_widget(form.link, {'attr': {'class': 'form-control w-100'}}) }}
-					{% endif %}
-				</div>
-				<div class="error">{{ form_errors(form.link) }}</div>
-			</div>
-			<div class="col-6">
-				{{ form_label(form.user, '', {'label_attr': {'class': 'form-label'}}) }}
-				<div class="input-group mb-3">
-                    {{ form_widget(form.user, {'attr': {'class': 'form-select'}}) }}
-				</div>
-				<div class="error">{{ form_errors(form.user) }}</div>
-			</div>
-			<div class="col-12">
-                {{ form_row(form.products, {'attr': {'class': 'quantity_input'}}) }}
-			</div>
-			<div class="col-6">
-				{{ form_label(form.date, '', {'label_attr': {'class': 'form-label'}}) }}
-
-				<div class="form-group">
-					<div class='input-group date' id='datetimepicker1'>
-						{{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
-						<span class="input-group-addon">
-							<span class="glyphicon glyphicon-calendar"></span>
-						</span>
-					</div>
-				</div>
-				<script type="text/javascript">
-					$(function () {
-$('#datetimepicker1').datetimepicker();
-});
-				</script>
-				<div class="error">{{ form_errors(form.date) }}</div>
-			</div>
-			<div class="col-12">
-				<button type="submit" class="btn btn-primary mt-3">Save</button>
-			</div>
-		</div>
-		{{ form_end(form) }}
-	</div>
+<div class="container">
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-4">
+            {{ form_label(form.link, '', {'label_attr': {'class': 'form-label'}}) }}
+            <div class="input-group mb-3 d-block">
+                {% if form.link.parent.vars.value.link %}
+                    <img src="{{ asset(form.link.parent.vars.value.link) }}" class="img-fluid d-block m-auto mb-2" alt="" style="max-width: 100px">
+                    {{ form_widget(form.link, {'required': false, "attr": {'class': 'w-100 form-control'}}) }}
+                {% else %}
+                    {{ form_widget(form.link, {'attr': {'class': 'form-control w-100'}}) }}
+                {% endif %}
+            </div>
+            <div class="error">{{ form_errors(form.link) }}</div>
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.user, '', {'label_attr': {'class': 'form-label'}}) }}
+            <div class="input-group mb-3">
+                {{ form_widget(form.user, {'attr': {'class': 'form-select'}}) }}
+            </div>
+            <div class="error">{{ form_errors(form.user) }}</div>
+        </div>
+        <div class="col-md-4">
+            {{ form_label(form.date, '', {'label_attr': {'class': 'form-label'}}) }}
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    {{ form_widget(form.date, {'attr': {'class': 'form-control'}}) }}
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function () {
+                    $('#datetimepicker1').datetimepicker();
+                });
+            </script>
+            <div class="error">{{ form_errors(form.date) }}</div>
+        </div>
+    </div><br/><br/><br/>
+    <div class="row">
+	    <div class="text-center">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+        {# <div class="col-md-12 d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div> #}
+    </div>
+    {{ form_end(form) }}
+</div>
 {% endblock %}
-
