@@ -39,6 +39,11 @@ To clear the cache you need to run the following command:
 ```bash
 php bin/console cache:clear
 ```
+### Clear the cache
+Authentication with Symfony's SecurityBundle 
+Installation de SecurityBundle:
+```bash
+composer require symfony/security-bundle
 
 ### Start the server
 To start the server you need to run the following command:
